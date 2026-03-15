@@ -17,7 +17,7 @@ const clientImages = [
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[100vh] min-h-[700px] overflow-hidden">
+    <section className="relative h-screen min-h-175 overflow-hidden">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -27,11 +27,11 @@ export default function HeroSection() {
       />
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50 z-[1]" />
+      <div className="absolute inset-0 bg-black/50 z-1" />
 
       {/* Full blackish-green overlay */}
       <div
-        className="absolute inset-0 z-[2]"
+        className="absolute inset-0 z-2"
         style={{
           background: "rgba(30, 60, 25, 0.45)",
           mixBlendMode: "multiply",
@@ -39,7 +39,7 @@ export default function HeroSection() {
       />
 
       <div
-        className="absolute inset-0 z-[3]"
+        className="absolute inset-0 z-3"
         style={{
           background: `
             radial-gradient(circle at 0% 50%, rgba(159,232,112,0.35), transparent 30%),
@@ -53,7 +53,7 @@ export default function HeroSection() {
         <div className="grid h-full grid-cols-1 items-center gap-10 lg:grid-cols-12">
           {/* Left content */}
           <div className="lg:col-span-7 xl:col-span-8">
-            <div className="max-w-[800px]">
+            <div className="max-w-200">
               <h1 className="text-[52px] font-bold leading-[0.95] tracking-[-2px] text-white sm:text-[68px] lg:text-[65px] xl:text-[95px] ">
                 Professional
                 <br />
@@ -68,13 +68,13 @@ export default function HeroSection() {
           <div className="relative lg:col-span-5 xl:col-span-4">
             <div className="flex flex-col items-start gap-6 lg:items-end">
               {/* Rating card */}
-              <div className="w-full max-w-[240px] rounded-[28px] border border-white/10 bg-black/5 p-5 backdrop-blur-md sm:max-w-[260px] sm:p-6">
+              <div className="w-full max-w-60 rounded-[28px] border border-white/10 bg-black/5 p-5 backdrop-blur-md sm:max-w-65 sm:p-6">
                 <div className="mb-4 flex items-start justify-between">
                   <h3 className="text-5xl font-bold leading-none text-white sm:text-6xl">
                     4.9
                   </h3>
                   <Star
-                    className="fill-[var(--primary)] text-[var(--primary)]"
+                    className="fill-(--primary) text-(--primary)"
                     size={34}
                   />
                 </div>
@@ -104,8 +104,8 @@ export default function HeroSection() {
               </div>
 
               {/* Description block */}
-              <div className="w-full max-w-[520px] text-left lg:mt-10">
-                <p className="max-w-[520px] text-base leading-8 text-white/90 sm:text-lg">
+              <div className="w-full max-w-130 text-left lg:mt-10">
+                <p className="max-w-130 text-base leading-8 text-white/90 sm:text-lg">
                   At Roplumb, our licensed and experienced technicians provide
                   high-quality plumbing services with same-day response,
                   upfront pricing, and long-lasting results.
@@ -135,7 +135,7 @@ export default function HeroSection() {
               <Check
                 size={18}
                 strokeWidth={3}
-                className="text-[var(--primary)]"
+                className="text-(--primary)"
               />
               <span>{feature}</span>
             </div>

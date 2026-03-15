@@ -74,13 +74,13 @@ export default function Navbar() {
                         {/* Invisible bridge to prevent hover break */}
                         <div className="absolute top-full left-0 h-4 w-full" />
 
-                        <div className="absolute top-full left-0 min-w-[220px] pt-4">
+                        <div className="absolute top-full left-0 min-w-55 pt-4">
                           <div className="rounded-2xl border border-white/10 bg-black/85 p-2 backdrop-blur-xl shadow-lg">
                             {item.dropdownItems?.map((dropdownItem) => (
                               <Link
                                 key={dropdownItem.label}
                                 href={dropdownItem.href}
-                                className="block rounded-xl px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 hover:text-[var(--primary)]"
+                                className="block rounded-xl px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 hover:text-(--primary)"
                               >
                                 {dropdownItem.label}
                               </Link>
@@ -157,7 +157,7 @@ export default function Navbar() {
                                 setMobileMenuOpen(false);
                                 setMobilePagesDropdownOpen(false);
                               }}
-                              className="block rounded-xl px-4 py-3 text-sm font-medium text-white/90 transition hover:bg-white/5 hover:text-[var(--primary)]"
+                              className="block rounded-xl px-4 py-3 text-sm font-medium text-white/90 transition hover:bg-white/5 hover:text-(--primary)"
                             >
                               {dropdownItem.label}
                             </Link>
@@ -175,7 +175,7 @@ export default function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-semibold transition ${
                       index === 0
-                        ? "bg-white/5 text-[var(--primary)]"
+                        ? "bg-white/5 text-(--primary)"
                         : "text-white hover:bg-white/5"
                     }`}
                   >

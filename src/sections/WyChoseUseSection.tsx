@@ -25,7 +25,7 @@ const bottomPoints = [
 
 const WhyChooseUsSection = () => {
   return (
-    <section className="bg-[#efefef] py-20 md:py-24">
+    <section className="bg-[#efefef] py-20 md:py-24 overflow-x-hidden">
       <div className="container-custom">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Left Images */}

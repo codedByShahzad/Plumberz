@@ -30,9 +30,9 @@ const WhyChooseUsSection = () => {
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Left Images */}
           <div className="relative order-2 lg:order-1 lg:col-span-5">
-            <div className="relative mx-auto h-[520px] w-full max-w-[520px] md:h-[620px]">
+            <div className="relative mx-auto h-130 w-full max-w-130 md:h-155">
               {/* Top/left tall image */}
-              <div className="absolute left-0 top-0 h-[360px] w-[200px] overflow-hidden rounded-t-[160px] rounded-b-[160px] md:h-[430px] lg:h-[450px] lg:w-[250px] md:w-[340px] xl:h-[500px] xl:w-[290px] ">
+              <div className="absolute left-0 top-0 h-90 w-50 overflow-hidden rounded-t-[160px] rounded-b-[160px] md:h-107.5 lg:h-112.5 lg:w-62.5 md:w-85 xl:h-125 xl:w-72.5 ">
                 <Image
                   src="/images/whychooseimage1.jpg"
                   alt="Plumbing tools"
@@ -42,7 +42,7 @@ const WhyChooseUsSection = () => {
               </div>
 
               {/* Bottom/center overlapping image */}
-              <div className="absolute bottom-0 left-[130px] h-[340px] w-[200px]  overflow-hidden rounded-t-[140px] rounded-b-[140px] md:left-[220px] lg:left-[150px] md:h-[400px] md:w-[290px] lg:h-[450px] lg:w-[250px] xl:h-[500px] xl:w-[290px] xl:left-[220px]">
+              <div className="absolute bottom-0 left-32.5 h-85 w-50  overflow-hidden rounded-t-[140px] rounded-b-[140px] md:left-55 lg:left-37.5 md:h-100 md:w-72.5 lg:h-112.5 lg:w-62.5 xl:h-125 xl:w-72.5 xl:left-55">
                 <Image
                   src="/images/whychooseimage2.jpg"
                   alt="Professional plumber"
@@ -65,20 +65,20 @@ const WhyChooseUsSection = () => {
             </div>
 
             {/* Heading */}
-            <div className="max-w-[760px]">
+            <div className="max-w-190">
               <h2 className="text-[40px] font-bold leading-[1.08] tracking-[-1.2px] text-[#132207] sm:text-[50px] xl:text-[60px]">
                 Reliable and Long-lasting Plumbing Solutions
               </h2>
             </div>
 
             {/* Description */}
-            <p className="mt-5 max-w-[760px] text-[18px] leading-8 text-[#5e5e5e]">
+            <p className="mt-5 max-w-190 text-[18px] leading-8 text-[#5e5e5e]">
               Our focus on expert craftsmanship, advanced plumbing technology,
               and responsive service makes us the trusted partner.
             </p>
 
             {/* Main card */}
-            <div className="mt-8 rounded-[28px] border-r-[6px] border-[var(--primary)] bg-[#f7f7f7] px-7 py-8 md:px-8 md:py-9">
+            <div className="mt-8 rounded-[28px] border-r-[6px] border-(--primary) bg-[#f7f7f7] px-7 py-8 md:px-8 md:py-9">
               <div className="space-y-8">
                 {featureCards.map((item, index) => {
                   const Icon = item.icon;
@@ -92,7 +92,7 @@ const WhyChooseUsSection = () => {
                           : ""
                       }`}
                     >
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--primary)]">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-(--primary)">
                         <Icon size={24} className="text-[#132207]" />
                       </div>
 
@@ -100,7 +100,7 @@ const WhyChooseUsSection = () => {
                         <h3 className="text-[28px] font-bold leading-[1.15] text-[#132207]">
                           {item.title}
                         </h3>
-                        <p className="mt-3 max-w-[620px] text-[16px] leading-8 text-[#5e5e5e]">
+                        <p className="mt-3 max-w-155 text-[16px] leading-8 text-[#5e5e5e]">
                           {item.description}
                         </p>
                       </div>
@@ -120,7 +120,7 @@ const WhyChooseUsSection = () => {
                   <Check
                     size={18}
                     strokeWidth={3}
-                    className="shrink-0 text-[var(--primary)]"
+                    className="shrink-0 text-(--primary)"
                   />
                   <span>{point}</span>
                 </div>

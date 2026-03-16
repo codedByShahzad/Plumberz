@@ -26,7 +26,7 @@ const steps = [
 
 const HowItWorksSection = () => {
   return (
-    <section className="bg-[#efefef] py-20 md:py-24">
+    <section className="bg-[#ffff] py-20 md:py-24">
       <div className="container-custom">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Left Content */}

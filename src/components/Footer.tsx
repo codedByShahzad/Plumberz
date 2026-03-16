@@ -20,7 +20,7 @@ const FooterSection = () => {
     <footer className="bg-[#efefef]">
       <div className="overflow-hidden bg-[#132207]">
         {/* Newsletter Top Bar */}
-        <div className="bg-[var(--primary)]">
+        <div className="bg-(--primary)">
           <div className="container-custom">
             <div className="grid grid-cols-1 items-center gap-8 py-10 md:py-12 lg:grid-cols-12 lg:gap-10">
               <div className="lg:col-span-4">
@@ -36,12 +36,12 @@ const FooterSection = () => {
                   <input
                     type="email"
                     placeholder="Enter Your Email"
-                    className="h-[56px] w-full rounded-[16px] border-0 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none md:max-w-[470px]"
+                    className="h-14 w-full rounded-2xl border-0 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none md:max-w-117.5"
                   />
 
                   <button
                     type="submit"
-                    className="flex h-[56px] cursor-pointer items-center justify-center rounded-[14px] bg-[#132207] px-8 text-[18px] font-semibold text-[var(--primary)] transition hover:opacity-95 md:min-w-[236px]"
+                    className="flex h-14 cursor-pointer items-center justify-center rounded-[14px] bg-[#132207] px-8 text-[18px] font-semibold text-(--primary) transition hover:opacity-95 md:min-w-59"
                   >
                     Subscribe Now
                   </button>
@@ -68,11 +68,11 @@ const FooterSection = () => {
                 </span>
               </Link>
 
-              <h4 className="mt-10 max-w-[420px] text-[28px] font-bold leading-[1.2] text-white">
+              <h4 className="mt-10 max-w-105 text-[28px] font-bold leading-[1.2] text-white">
                 Professional Tools for Precision Leak Solutions
               </h4>
 
-              <p className="mt-6 max-w-[430px] text-[17px] leading-9 text-white/90">
+              <p className="mt-6 max-w-107.5 text-[17px] leading-9 text-white/90">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
                 tellus, luctus nec ullamcorper mattis.
               </p>
@@ -91,9 +91,9 @@ const FooterSection = () => {
                         ? "/"
                         : `/${item.toLowerCase().replace(/\s+/g, "-")}`
                     }
-                    className="flex items-center gap-3 text-[17px] text-white/90 transition hover:text-[var(--primary)]"
+                    className="flex items-center gap-3 text-[17px] text-white/90 transition hover:text-(--primary)"
                   >
-                    <ArrowRight size={15} className="text-[var(--primary)]" />
+                    <ArrowRight size={15} className="text-(--primary)" />
                     <span>{item}</span>
                   </Link>
                 ))}
@@ -109,9 +109,9 @@ const FooterSection = () => {
                   <Link
                     key={item}
                     href="/"
-                    className="flex items-center gap-3 text-[17px] text-white/90 transition hover:text-[var(--primary)]"
+                    className="flex items-center gap-3 text-[17px] text-white/90 transition hover:text-(--primary)"
                   >
-                    <ArrowRight size={15} className="text-[var(--primary)]" />
+                    <ArrowRight size={15} className="text-(--primary)" />
                     <span>{item}</span>
                   </Link>
                 ))}
@@ -146,9 +146,9 @@ const FooterSection = () => {
       key={index}
       href={href}
       className="
-        flex h-[56px] w-[56px] items-center justify-center
+        flex h-14 w-14 items-center justify-center
         rounded-full
-        bg-[var(--primary)]
+        bg-(--primary)
         text-[#132207]
         transition-all duration-300
         hover:scale-105

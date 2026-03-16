@@ -1,5 +1,6 @@
 import Banner from "@/src/components/Banner";
 import AboutSection from "@/src/sections/AboutSection";
+import FaqSection from "@/src/sections/FaqSection";
 import HeroSection from "@/src/sections/HeroSection";
 import HowItWorksSection from "@/src/sections/HowItWorksSection";
 import PricingSection from "@/src/sections/PricingSection";
@@ -17,6 +18,7 @@ export default function Home() {
       <Banner />
       <HowItWorksSection />
       <PricingSection />
+      <FaqSection />
     </div>
   );
 }

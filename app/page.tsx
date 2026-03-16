@@ -7,6 +7,9 @@ import PricingSection from "@/src/sections/PricingSection";
 import ServicesSection from "@/src/sections/ServicesSection";
 import WhyChooseUsSection from "@/src/sections/WyChoseUseSection";
 import Image from "next/image";
+import contactSection from '../src/sections/ContactSection';
+import ContactSection from "../src/sections/ContactSection";
+import TestimonialsSection from "@/src/sections/TestimonialSection";
 
 export default function Home() {
   return (
@@ -19,6 +22,8 @@ export default function Home() {
       <HowItWorksSection />
       <PricingSection />
       <FaqSection />
+      <ContactSection />
+      <TestimonialsSection /> 
     </div>
   );
 }

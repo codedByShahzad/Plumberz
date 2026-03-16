@@ -47,7 +47,7 @@ const AboutSection = () => {
 
             {/* Heading */}
             <div className="max-w-270">
-              <h2 className="text-[50px] font-bold leading-[1.02] tracking-[-1.8px] text-[#132207] md:text-[60px] xl:text-[72px]">
+              <h2 className="text-[55px] font-bold leading-[1.02] tracking-[-1.8px] text-[#132207] ">
                 Trusted Plumbing Experts With Years of Experience
               </h2>
 

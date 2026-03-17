@@ -53,7 +53,7 @@ const page = () => {
                 Home
               </Link>
               <span className="text-white">/</span>
-              <span className="text-white">Pricing</span>
+              <span className="text-white">FAQ's</span>
             </div>
           </div>
         </div>

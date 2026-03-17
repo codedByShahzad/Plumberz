@@ -35,7 +35,7 @@ const OurApproachSection = () => {
                   <h3 className="text-[54px] font-bold leading-none text-[#132207] md:text-[68px]">
                     4.9
                   </h3>
-                  <Star className="fill-white text-white" size={28} />
+                  <Star className="fill-black text-white" size={32} />
                 </div>
 
                 <p className="mt-4 text-[16px] leading-8 text-[#132207]/75 md:text-[18px]">

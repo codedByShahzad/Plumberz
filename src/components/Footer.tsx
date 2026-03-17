@@ -167,7 +167,7 @@ const FooterSection = () => {
             <div className="flex flex-col gap-4 text-[17px] text-white/95 md:flex-row md:items-center md:justify-between">
               <p>
                 Plumbing Service Template Kit by{" "}
-                <span className="font-semibold">FoxCreation Studio</span>
+                <span className="font-semibold">Soldevix Solutions</span>
               </p>
               <p>Copyright © 2025. All rights reserved</p>
             </div>

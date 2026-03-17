@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 
 const ContactSection = () => {
   return (
-    <section className="bg-[#ffff] py-20">
+    <section className="bg-[#ffff] ">
       <div className="">
         <div
           className="relative overflow-hidden bg-cover bg-center bg-no-repeat"

@@ -15,7 +15,7 @@ const page = () => {
         }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-0 bg-black/50 z-1" />
 
         {/* Green gradient overlay */}
         <div

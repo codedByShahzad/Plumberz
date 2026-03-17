@@ -54,7 +54,7 @@ export default function HeroSection() {
           {/* Left content */}
           <div className="lg:col-span-7 xl:col-span-8">
             <div className="max-w-200">
-              <h1 className="text-[45px] font-bold leading-[0.95] tracking-[-2px] text-white sm:text-[68px] lg:text-[65px] xl:text-[95px] ">
+              <h1 className="text-[45px] font-bold leading-[1.1] tracking-[-2px] text-white sm:text-[68px] lg:text-[65px] xl:text-[95px] ">
                 Professional
                 <br />
                 Plumbing Services

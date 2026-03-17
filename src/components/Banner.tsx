@@ -11,7 +11,7 @@ const partners = [
 
 const Banner = () => {
   return (
-    <section className="bg-[#102300] py-10 md:py-12">
+    <section className="bg-[#102300] py-10 md:py-22">
       <div className="container-custom">
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-14 xl:gap-x-16">
           {partners.map((partner) => (

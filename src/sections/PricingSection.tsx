@@ -54,7 +54,7 @@ const pricingPlans = [
 const PricingSection = () => {
   return (
     <section className="bg-[#efefef] py-20 md:py-24">
-      <div className="container-custom">
+      <div className="max-w-325 w-full m-auto px-5">
         {/* Label */}
         <div className="mb-6 flex justify-center">
           <span className="inline-flex items-center gap-1 text-[15px] font-semibold text-[#132207]">

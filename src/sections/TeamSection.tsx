@@ -51,7 +51,7 @@ const socialLinks = [
 const TeamSection = () => {
   return (
     <section className="bg-[#efefef] py-20 md:py-24">
-      <div className="max-w-325 w-full m-auto p-5">
+      <div className="max-w-325 w-full m-auto px-5">
         {/* Top label */}
         <div className="mb-5 flex justify-center">
           <p className="text-[15px] font-semibold text-[#132207]">

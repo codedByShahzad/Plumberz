@@ -237,15 +237,7 @@ const TestimonialsSection = () => {
                     className="shrink-0 px-0.5 lg:px-3"
                     style={{ width: `${100 / visibleCards}%` }}
                   >
-                    <motion.div
-                      whileHover={{ y: -6 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                      className="relative flex h-full min-h-90 flex-col rounded-[28px] bg-[#132207] px-8 py-8 will-change-transform md:px-10 md:py-9"
-                    >
+                    <motion.div className="relative flex h-full min-h-90 flex-col rounded-[28px] bg-[#132207] px-8 py-8 md:px-10 md:py-9">
                       {/* Stars */}
                       <div className="mb-5 flex items-center gap-2">
                         {[...Array(5)].map((_, starIndex) => (

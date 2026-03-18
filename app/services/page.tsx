@@ -1,11 +1,64 @@
-import ContactSection from '@/src/sections/ContactSection'
-import HowItWorksSection from '@/src/sections/HowItWorksSection'
-import ServicesSection from '@/src/sections/ServicesSection'
-import WhyChooseUsSection from '@/src/sections/WyChoseUseSection'
-import Link from 'next/link'
-import React from 'react'
+"use client";
 
-const page = () => {
+import ContactSection from "@/src/sections/ContactSection";
+import HowItWorksSection from "@/src/sections/HowItWorksSection";
+import ServicesSection from "@/src/sections/ServicesSection";
+import WhyChooseUsSection from "@/src/sections/WyChoseUseSection";
+import Link from "next/link";
+import React from "react";
+import { motion, type Variants } from "framer-motion";
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const textContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+const textItem: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    filter: "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const Page = () => {
+  const headingWords = "Our Services".split(" ");
+
   return (
     <div>
       {/* Hero Section */}
@@ -16,9 +69,9 @@ const page = () => {
         }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/50 z-1" />
+        <div className="absolute inset-0 z-1 bg-black/50" />
 
-        {/* Green gradient overlay */}
+        {/* Gradient */}
         <div
           className="absolute inset-0"
           style={{
@@ -40,31 +93,49 @@ const page = () => {
 
         {/* Content */}
         <div className="container-custom relative z-10 flex min-h-130 items-center pt-28 pb-14 md:min-h-140 md:pt-32 md:pb-16">
-          <div>
-            <h1 className="text-[64px] font-bold leading-[0.95] tracking-[-2px] text-white sm:text-[78px] md:text-[96px] lg:text-[110px]">
-              Our Services
-            </h1>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Heading with STAGGER */}
+            <motion.h1
+              variants={textContainer}
+              className="text-[64px] font-bold leading-[0.95] tracking-[-2px] text-white sm:text-[78px] md:text-[96px] lg:text-[110px]"
+            >
+              {headingWords.map((word, i) => (
+                <motion.span
+                  key={i}
+                  variants={textItem}
+                  className="inline-block mr-3"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h1>
 
             {/* Breadcrumb */}
-            <div className="mt-8 flex items-center gap-2 text-[18px] font-medium md:text-[20px]">
-              <Link
-                href="/"
-                className="text-(--primary) hover:opacity-90"
-              >
+            <motion.div
+              variants={fadeUp}
+              className="mt-8 flex items-center gap-2 text-[18px] font-medium md:text-[20px]"
+            >
+              <Link href="/" className="text-(--primary) hover:opacity-90">
                 Home
               </Link>
               <span className="text-white">/</span>
               <span className="text-white">Services</span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
-      <ServicesSection  />
+
+      {/* Sections */}
+      <ServicesSection />
       <HowItWorksSection />
       <ContactSection />
       <WhyChooseUsSection />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

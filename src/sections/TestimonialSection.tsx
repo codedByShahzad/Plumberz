@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { motion, type Variants } from "framer-motion";
 
 const testimonials = [
   {
@@ -39,6 +40,73 @@ const testimonials = [
   },
 ];
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const fadeUpVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const sliderVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const textContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const textItem: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    filter: "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 const QuoteIcon = () => {
   return (
     <svg
@@ -46,7 +114,6 @@ const QuoteIcon = () => {
       height="64"
       viewBox="0 0 64 64"
       fill="none"
-      style={{  }}
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
@@ -65,6 +132,8 @@ const TestimonialsSection = () => {
   const [visibleCards, setVisibleCards] = useState(3);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [enableTransition, setEnableTransition] = useState(true);
+
+  const headingWords = "Real Experiences From Customers".split(" ");
 
   useEffect(() => {
     const handleResize = () => {
@@ -88,14 +157,14 @@ const TestimonialsSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => prev + 1);
       setEnableTransition(true);
+      setCurrentIndex((prev) => prev + 1);
     }, 6000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const handleTransitionEnd = () => {
+  const handleAnimationComplete = () => {
     if (currentIndex >= testimonials.length) {
       setEnableTransition(false);
       setCurrentIndex(0);
@@ -104,33 +173,63 @@ const TestimonialsSection = () => {
 
   return (
     <section className="bg-[#efefef] p-5 md:p-10 xl:p-24">
-      <div className="">
+      <div>
         <div className="grid grid-cols-1 gap-10 lg:items-start lg:gap-10">
           {/* Left Content */}
-          <div className="lg:col-span-4">
-            <div className="mb-5">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="lg:col-span-4"
+          >
+            <motion.div variants={fadeUpVariants} className="mb-5">
               <span className="inline-flex items-center gap-1 text-[15px] font-semibold text-[#132207]">
                 <span className="text-(--primary)">(</span>
                 Client Testimonials
                 <span className="text-(--primary)">)</span>
               </span>
-            </div>
+            </motion.div>
 
-            <h2 className="text-[42px] font-bold leading-[1.08] tracking-[-1.2px] text-[#132207] sm:text-[52px] xl:text-[60px]">
-              Real Experiences From Customers
-            </h2>
-          </div>
+            <motion.h2
+              variants={textContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="text-[42px] font-bold leading-[1.08] tracking-[-1.2px] text-[#132207] sm:text-[52px] xl:text-[60px]"
+            >
+              {headingWords.map((word, index) => (
+                <motion.span
+                  key={index}
+                  variants={textItem}
+                  className="mr-2 inline-block"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h2>
+          </motion.div>
 
           {/* Right Slider */}
-          <div className="lg:col-span-8">
+          <motion.div
+            variants={sliderVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="lg:col-span-8"
+          >
             <div className="overflow-hidden">
-              <div
+              <motion.div
                 className="flex"
-                onTransitionEnd={handleTransitionEnd}
-                style={{
-                  transform: `translateX(-${(currentIndex * 100) / visibleCards}%)`,
-                  transition: enableTransition ? "transform 700ms ease" : "none",
+                animate={{
+                  x: `-${(currentIndex * 100) / visibleCards}%`,
                 }}
+                transition={
+                  enableTransition
+                    ? { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+                    : { duration: 0 }
+                }
+                onAnimationComplete={handleAnimationComplete}
               >
                 {loopedTestimonials.map((item, index) => (
                   <div
@@ -138,7 +237,15 @@ const TestimonialsSection = () => {
                     className="shrink-0 px-0.5 lg:px-3"
                     style={{ width: `${100 / visibleCards}%` }}
                   >
-                    <div className="relative flex h-full min-h-90 flex-col rounded-[28px] bg-[#132207] px-8 py-8 md:px-10 md:py-9">
+                    <motion.div
+                      whileHover={{ y: -6 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20,
+                      }}
+                      className="relative flex h-full min-h-90 flex-col rounded-[28px] bg-[#132207] px-8 py-8 will-change-transform md:px-10 md:py-9"
+                    >
                       {/* Stars */}
                       <div className="mb-5 flex items-center gap-2">
                         {[...Array(5)].map((_, starIndex) => (
@@ -183,12 +290,12 @@ const TestimonialsSection = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 ))}
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

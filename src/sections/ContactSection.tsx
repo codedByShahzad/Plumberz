@@ -1,11 +1,71 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const formCardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 60,
+    y: 20,
+    scale: 0.98,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const fadeUpVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const fieldVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 18,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
 const ContactSection = () => {
   return (
-    <section className="bg-[#ffff] ">
-      <div className="">
+    <section className="bg-white">
+      <div>
         <div
           className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
           style={{
@@ -21,128 +81,150 @@ const ContactSection = () => {
 
             {/* Right form area */}
             <div className="lg:col-span-6">
-              <div className="ml-auto w-full max-w-190 rounded-[30px] bg-[#f5f5f5] p-6 md:p-8 xl:p-10">
-                {/* Label */}
-                <div className="mb-5">
-                  <span className="inline-flex items-center gap-1 text-[15px] font-semibold text-[#132207]">
-                    <span className="text-(--primary)">(</span>
-                    Book an Appointment
-                    <span className="text-(--primary)">)</span>
-                  </span>
-                </div>
+              <motion.div
+                variants={formCardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                className="ml-auto w-full max-w-190 rounded-[30px] bg-[#f5f5f5] p-6 md:p-8 xl:p-10"
+              >
+                <motion.div variants={containerVariants}>
+                  {/* Label */}
+                  <motion.div variants={fadeUpVariants} className="mb-5">
+                    <span className="inline-flex items-center gap-1 text-[15px] font-semibold text-[#132207]">
+                      <span className="text-(--primary)">(</span>
+                      Book an Appointment
+                      <span className="text-(--primary)">)</span>
+                    </span>
+                  </motion.div>
 
-                {/* Heading */}
-                <div className="max-w-130">
-                  <h2 className="text-[32px] font-bold leading-[1.02] tracking-[-1.2px] text-[#132207] sm:text-[44px] xl:text-[52px]">
-                    Make an {" "}
-                    <br className="hidden md:flex" />
-                    Appointment
-                  </h2>
-                </div>
+                  {/* Heading */}
+                  <motion.div variants={fadeUpVariants} className="max-w-130">
+                    <h2 className="text-[32px] font-bold leading-[1.02] tracking-[-1.2px] text-[#132207] sm:text-[44px] xl:text-[52px]">
+                      Make an
+                      <br className="hidden md:flex" />
+                      Appointment
+                    </h2>
+                  </motion.div>
 
-                {/* Description */}
-                <p className="mt-5 max-w-180 text-[14px] md:text-[17px] md:leading-8 text-[#5e5e5e]">
-                  Schedule your plumbing service in just a few clicks. Fill out
-                  the form below, hoose your preferred date, and our expert
-                  technicians will get back to you with confirmation.
-                </p>
+                  {/* Description */}
+                  <motion.p
+                    variants={fadeUpVariants}
+                    className="mt-5 max-w-180 text-[14px] text-[#5e5e5e] md:text-[17px] md:leading-8"
+                  >
+                    Schedule your plumbing service in just a few clicks. Fill out
+                    the form below, hoose your preferred date, and our expert
+                    technicians will get back to you with confirmation.
+                  </motion.p>
 
-                {/* Form */}
-                <form className="mt-8 space-y-5">
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition focus:border-(--primary)"
-                  />
-
-                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                    <input
+                  {/* Form */}
+                  <motion.form
+                    variants={containerVariants}
+                    className="mt-8 space-y-5"
+                  >
+                    <motion.input
+                      variants={fieldVariants}
                       type="text"
-                      placeholder="Phone Number"
-                      className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition focus:border-(--primary)"
+                      placeholder="Full Name"
+                      className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition-colors focus:border-(--primary)"
                     />
 
-                    <input
-                      type="email"
-                      placeholder="Email Address"
-                      className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition focus:border-(--primary)"
-                    />
-                  </div>
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                      <motion.input
+                        variants={fieldVariants}
+                        type="text"
+                        placeholder="Phone Number"
+                        className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition-colors focus:border-(--primary)"
+                      />
 
-                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                    <div className="relative">
-                      <select
-                        defaultValue=""
-                        className="h-14.5 w-full appearance-none rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 pr-12 text-[16px] text-[#b7b7b7] outline-none transition focus:border-(--primary) focus:text-[#132207]"
-                      >
-                        <option value="" disabled hidden>
-                          Select Service
-                        </option>
-
-                        <option className="text-[#132207]">
-                          Emergency Plumbing Repairs
-                        </option>
-                        <option className="text-[#132207]">
-                          Leak Detection & Repair
-                        </option>
-                        <option className="text-[#132207]">
-                          Water Heater Installation & Repair
-                        </option>
-                        <option className="text-[#132207]">
-                          Pipe Installation & Replacement
-                        </option>
-                        <option className="text-[#132207]">
-                          Bathroom & Kitchen Plumbing
-                        </option>
-                        <option className="text-[#132207]">
-                          Sewer Line Inspection & Repair
-                        </option>
-                      </select>
-
-                      <ChevronDown
-                        size={18}
-                        className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-[#b7b7b7]"
+                      <motion.input
+                        variants={fieldVariants}
+                        type="email"
+                        placeholder="Email Address"
+                        className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition-colors focus:border-(--primary)"
                       />
                     </div>
-                    <input
-                      type="text"
-                      placeholder="Preferred Date"
-                      onClick={(e) => (e.currentTarget.type = "date")}
-                      onBlur={(e) => {
-                        if (!e.currentTarget.value)
-                          e.currentTarget.type = "text";
-                      }}
-                      className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition focus:border-(--primary)"
-                    />
-                  </div>
 
-                  <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                    <input
-                      type="text"
-                      placeholder="Preferred Time"
-                      onClick={(e) => (e.currentTarget.type = "time")}
-                      onBlur={(e) => {
-                        if (!e.currentTarget.value)
-                          e.currentTarget.type = "text";
-                      }}
-                      className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition focus:border-(--primary)"
-                    />
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                      <motion.div variants={fieldVariants} className="relative">
+                        <select
+                          defaultValue=""
+                          className="h-14.5 w-full appearance-none rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 pr-12 text-[16px] text-[#b7b7b7] outline-none transition-colors focus:border-(--primary) focus:text-[#132207]"
+                        >
+                          <option value="" disabled hidden>
+                            Select Service
+                          </option>
 
-                    <input
-                      type="text"
-                      placeholder="Address / Service Location"
-                      className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition focus:border-(--primary)"
-                    />
-                  </div>
+                          <option className="text-[#132207]">
+                            Emergency Plumbing Repairs
+                          </option>
+                          <option className="text-[#132207]">
+                            Leak Detection & Repair
+                          </option>
+                          <option className="text-[#132207]">
+                            Water Heater Installation & Repair
+                          </option>
+                          <option className="text-[#132207]">
+                            Pipe Installation & Replacement
+                          </option>
+                          <option className="text-[#132207]">
+                            Bathroom & Kitchen Plumbing
+                          </option>
+                          <option className="text-[#132207]">
+                            Sewer Line Inspection & Repair
+                          </option>
+                        </select>
 
-                  <button
-                    type="submit"
-                    className="flex h-14.5 w-full cursor-pointer items-center justify-center rounded-2xl bg-(--primary) text-[18px] font-semibold text-[#132207] transition hover:opacity-95"
-                  >
-                    Book Appointment Now
-                  </button>
-                </form>
-              </div>
+                        <ChevronDown
+                          size={18}
+                          className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-[#b7b7b7]"
+                        />
+                      </motion.div>
+
+                      <motion.input
+                        variants={fieldVariants}
+                        type="text"
+                        placeholder="Preferred Date"
+                        onClick={(e) => (e.currentTarget.type = "date")}
+                        onBlur={(e) => {
+                          if (!e.currentTarget.value) e.currentTarget.type = "text";
+                        }}
+                        className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition-colors focus:border-(--primary)"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                      <motion.input
+                        variants={fieldVariants}
+                        type="text"
+                        placeholder="Preferred Time"
+                        onClick={(e) => (e.currentTarget.type = "time")}
+                        onBlur={(e) => {
+                          if (!e.currentTarget.value) e.currentTarget.type = "text";
+                        }}
+                        className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition-colors focus:border-(--primary)"
+                      />
+
+                      <motion.input
+                        variants={fieldVariants}
+                        type="text"
+                        placeholder="Address / Service Location"
+                        className="h-14.5 w-full rounded-[18px] border border-black/10 bg-[#f5f5f5] px-7 text-[16px] text-[#132207] placeholder:text-[#b7b7b7] outline-none transition-colors focus:border-(--primary)"
+                      />
+                    </div>
+
+                    <motion.button
+                      variants={fieldVariants}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.99 }}
+                      type="submit"
+                      className="flex h-14.5 w-full cursor-pointer items-center justify-center rounded-2xl bg-(--primary) text-[18px] font-semibold text-[#132207] transition-opacity hover:opacity-95"
+                    >
+                      Book Appointment Now
+                    </motion.button>
+                  </motion.form>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>

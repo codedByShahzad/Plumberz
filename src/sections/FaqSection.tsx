@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 
 const faqItems = [
   {
@@ -38,6 +38,73 @@ const faqItems = [
   },
 ];
 
+const imageVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -50,
+    scale: 0.98,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const contentContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const fadeUpVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const faqListVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.12,
+    },
+  },
+};
+
+const faqItemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 const FaqSection = () => {
   const [openId, setOpenId] = useState<number>(1);
 
@@ -46,23 +113,34 @@ const FaqSection = () => {
   };
 
   return (
-    <section className="bg-[#ffff] py-20 md:py-24">
+    <section className="bg-white py-20 md:py-24">
       <div className="container-custom">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
-          
           {/* Left Image */}
-          <div className="order-2 mt-10 lg:order-1 lg:col-span-5 lg:mt-0">
+          <motion.div
+            variants={imageVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="order-2 mt-10 lg:order-1 lg:col-span-5 lg:mt-0"
+          >
             <div className="relative mx-auto max-w-130 overflow-hidden rounded-3xl">
               <Image
                 src="/images/faqimage.jpg"
                 alt="Professional plumber working"
                 width={900}
                 height={1000}
-                className=" w-full object-cover h-155 lg:h-187.5"
+                className="h-155 w-full object-cover lg:h-187.5"
               />
 
               {/* Overlay Card */}
-              <div className="absolute left-0 top-0 max-w-77.5 rounded-br-3xl bg-[#132207] px-8 py-7 md:max-w-70">
+              <motion.div
+                initial={{ opacity: 0, y: -18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute left-0 top-0 max-w-77.5 rounded-br-3xl bg-[#132207] px-8 py-7 md:max-w-70"
+              >
                 <h3 className="text-[26px] font-bold leading-[1.05] text-white">
                   Clear Solutions
                   <br />
@@ -70,42 +148,50 @@ const FaqSection = () => {
                   <br />
                   <span className="text-(--primary)">Leak-Free Future</span>
                 </h3>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Content */}
-          <div className="order-1 lg:order-2 lg:col-span-7">
-
+          <motion.div
+            variants={contentContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.18 }}
+            className="order-1 lg:order-2 lg:col-span-7"
+          >
             {/* Label */}
-            <div className="mb-5">
+            <motion.div variants={fadeUpVariants} className="mb-5">
               <span className="inline-flex items-center gap-1 text-[15px] font-semibold text-[#132207]">
                 <span className="text-(--primary)">(</span>
                 Helpful Answers
                 <span className="text-(--primary)">)</span>
               </span>
-            </div>
+            </motion.div>
 
             {/* Heading */}
-            <div className="max-w-155">
+            <motion.div variants={fadeUpVariants} className="max-w-155">
               <h2 className="text-[40px] font-bold leading-[1.08] tracking-[-1.2px] text-[#132207] sm:text-[52px] xl:text-[60px]">
                 Frequently Asked
                 <br />
                 Questions
               </h2>
-            </div>
+            </motion.div>
 
             {/* FAQ */}
-            <div className="mt-8 space-y-5">
+            <motion.div
+              variants={faqListVariants}
+              className="mt-8 space-y-5"
+            >
               {faqItems.map((item) => {
                 const isOpen = openId === item.id;
 
                 return (
-                  <div key={item.id}>
+                  <motion.div key={item.id} variants={faqItemVariants}>
                     <button
                       type="button"
                       onClick={() => toggleFaq(item.id)}
-                      className={`flex w-full cursor-pointer items-center justify-between rounded-[20px] px-8 py-6 text-left transition-all duration-300 ${
+                      className={`flex w-full cursor-pointer items-center justify-between rounded-[20px] px-8 py-6 text-left transition-colors duration-300 ${
                         isOpen
                           ? "bg-(--primary)"
                           : "bg-[#f1f1f1] hover:bg-[#ebebeb]"
@@ -117,7 +203,7 @@ const FaqSection = () => {
 
                       <motion.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                         className="shrink-0"
                       >
                         <ChevronDown
@@ -134,14 +220,17 @@ const FaqSection = () => {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.32, ease: "easeInOut" }}
+                          transition={{
+                            height: { duration: 0.34, ease: [0.22, 1, 0.36, 1] },
+                            opacity: { duration: 0.22 },
+                          }}
                           className="overflow-hidden"
                         >
                           <motion.div
-                            initial={{ y: -8 }}
-                            animate={{ y: 0 }}
-                            exit={{ y: -8 }}
-                            transition={{ duration: 0.25 }}
+                            initial={{ y: -8, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -8, opacity: 0 }}
+                            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                             className="px-8 pt-5 pb-1"
                           >
                             <p className="max-w-190 text-[18px] leading-8 text-[#5e5e5e]">
@@ -151,12 +240,11 @@ const FaqSection = () => {
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
-
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Check, Star } from "lucide-react";
 
 const features = [
@@ -15,10 +18,69 @@ const clientImages = [
   "/images/client4.jpg",
 ];
 
+const headingVariants: Variants = {
+  hidden: { opacity: 0, x: -120 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+
+const ratingCardVariants: Variants = {
+  hidden: { opacity: 0, y: -100 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      delay: 0.2,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+
+const rightContentVariants: Variants = {
+  hidden: { opacity: 0, x: 120 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.9,
+      delay: 0.35,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+
+const featureContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.7,
+    },
+  },
+};
+
+const featureItemVariants: Variants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+
 export default function HeroSection() {
   return (
-    <section className="relative md:h-screen min-h-175 overflow-hidden">
-      {/* Background image */}
+    <section className="relative min-h-175 overflow-hidden md:h-screen">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -26,10 +88,8 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50 z-1" />
+      <div className="absolute inset-0 z-1 bg-black/50" />
 
-      {/* Full blackish-green overlay */}
       <div
         className="absolute inset-0 z-2"
         style={{
@@ -48,27 +108,33 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Content */}
       <div className="container-custom relative z-10 flex h-full flex-col justify-between pt-28 pb-10 md:pt-36 md:pb-12">
         <div className="grid h-full grid-cols-1 items-center gap-10 lg:grid-cols-12">
-          {/* Left content */}
           <div className="lg:col-span-7 xl:col-span-8">
-            <div className="max-w-200">
-              <h1 className="text-[45px] font-bold leading-[1.1] tracking-[-2px] text-white sm:text-[68px] lg:text-[65px] xl:text-[95px] ">
+            <div className="max-w-200 overflow-hidden">
+              <motion.h1
+                variants={headingVariants}
+                initial="hidden"
+                animate="visible"
+                className="text-[45px] font-bold leading-[1.1] tracking-[-2px] text-white sm:text-[68px] lg:text-[65px] xl:text-[95px]"
+              >
                 Professional
                 <br />
                 Plumbing Services
                 <br />
                 You Can Trust
-              </h1>
+              </motion.h1>
             </div>
           </div>
 
-          {/* Right content */}
           <div className="relative lg:col-span-5 xl:col-span-4">
             <div className="flex flex-col items-start gap-6 lg:items-end">
-              {/* Rating card */}
-              <div className="w-full max-w-60 rounded-[28px] border border-white/10 bg-black/5 p-5 backdrop-blur-md sm:max-w-65 sm:p-6">
+              <motion.div
+                variants={ratingCardVariants}
+                initial="hidden"
+                animate="visible"
+                className="w-full max-w-60 rounded-[28px] border border-white/10 bg-black/5 p-5 backdrop-blur-md sm:max-w-65 sm:p-6"
+              >
                 <div className="mb-4 flex items-start justify-between">
                   <h3 className="text-5xl font-bold leading-none text-white sm:text-6xl">
                     4.9
@@ -101,10 +167,14 @@ export default function HeroSection() {
                   <br />
                   7.000+ clients review
                 </p>
-              </div>
+              </motion.div>
 
-              {/* Description block */}
-              <div className="w-full max-w-130 text-left lg:mt-10">
+              <motion.div
+                variants={rightContentVariants}
+                initial="hidden"
+                animate="visible"
+                className="w-full max-w-130 text-left lg:mt-10"
+              >
                 <p className="max-w-130 text-base leading-8 text-white/90 sm:text-lg">
                   At Roplumb, our licensed and experienced technicians provide
                   high-quality plumbing services with same-day response,
@@ -120,17 +190,22 @@ export default function HeroSection() {
                     <ArrowRight size={20} />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
 
-        {/* Bottom features */}
-        <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+        <motion.div
+          variants={featureContainerVariants}
+          initial="hidden"
+          animate="visible"
+          className="mt-10 flex flex-wrap gap-x-8 gap-y-4"
+        >
           {features.map((feature) => (
-            <div
+            <motion.div
               key={feature}
-              className="flex items-center gap-2 glass-nav p-2 rounded-full text-[15px] font-medium text-white sm:text-[16px]"
+              variants={featureItemVariants}
+              className="glass-nav flex items-center gap-2 rounded-full p-2 text-[15px] font-medium text-white sm:text-[16px]"
             >
               <Check
                 size={18}
@@ -138,9 +213,9 @@ export default function HeroSection() {
                 className="text-(--primary)"
               />
               <span>{feature}</span>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
